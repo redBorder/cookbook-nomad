@@ -1,0 +1,19 @@
+log_level = "INFO"
+
+region = "global"
+datacenter = "dc1"
+name = "<%= @name %>"
+
+data_dir = "<%= @data_dir %>"
+bind_addr = "<%= @bind_addr %>"
+
+leave_on_interrupt = true
+leave_on_terminate = true
+
+server {
+    enabled = true
+    num_schedulers = <%= @num_schedulers %> 
+    bootstrap_expect = <%= @bootstrap_expect %>
+    start_join = <%= @servers %> 
+    retry_join = <%= @servers %> 
+}
