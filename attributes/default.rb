@@ -16,4 +16,5 @@ default['nomad']['servers'] = ["127.0.0.1"]
 
 default['nomad']['cpu_mhz'] = 500
 default['nomad']['memory_mb'] = 512
-default['nomad']['disk_mb'] =5120
+default['nomad']['disk_mb'] = 5120
+default['nomad']['node_class'] = "default"

@@ -16,6 +16,7 @@ action :add do
     cpu_mhz = new_resource.cpu_mhz
     memory_mb = new_resource.memory_mb
     disk_mb = new_resource.disk_mb
+    node_class = new_resource.node_class
 
     service "nomad-client" do
       supports :status => true, :start => true, :restart => true, :reload => true
@@ -50,7 +51,7 @@ action :add do
       retries 2
       variables(:name => name, :data_dir => data_dir, :bind_addr => bind_addr, 
                 :servers => servers, :cpu_mhz => cpu_mhz, :memory_mb => memory_mb,
-                :disk_mb => disk_mb)
+                :disk_mb => disk_mb, :node_class => node_class)
       notifies :restart, 'service[nomad-client]', :delayed
     end
 

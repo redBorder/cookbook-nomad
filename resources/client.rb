@@ -15,4 +15,5 @@ attribute :bind_addr, :kind_of => String, :default => "127.0.0.1"
 attribute :servers, :kind_of => Array, :default => ["127.0.0.1"]
 attribute :cpu_mhz, :kind_of => Integer, :default => 500
 attribute :memory_mb, :kind_of => Integer, :default => 512
-attribute :disk_mb, :kind_of => Integer, :default => 5120
+attribute :disk_mb, :kind_of => Integer, :default => 5120 
+attribute :node_class, :kind_of => String, :default => "default"
