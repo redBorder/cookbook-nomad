@@ -1,3 +1,8 @@
+# Cookbook Name:: nomad
+#
+# Provider:: server
+#
+
 action :add do
   begin
     config_dir = "/etc/nomad"
@@ -21,7 +26,7 @@ action :add do
       action :create
     end
  
-    [ log_dir, data_dir ].each do |path|
+    [ log_dir, data_dir, "#{data_dir}/server", "#{data_dir}/server/raft" ].each do |path|
         directory path do
           owner user
           group group
@@ -45,6 +50,17 @@ action :add do
       variables(:name => name, :data_dir => data_dir, :bind_addr => bind_addr, 
                 :num_schedulers => num_schedulers, :bootstrap_expect => bootstrap_expect, :servers => servers)
       notifies :restart, 'service[nomad-server]', :delayed
+    end
+
+   template "#{data_dir}/server/raft/peers.json" do
+      source "peers.json.erb"
+      owner user
+      group group
+      cookbook "nomad"
+      mode 0644
+      retries 2
+      variables(:servers => servers)
+      #notifies :restart, 'service[nomad-server]', :delayed
     end
 
     Chef::Log.info("cookbook-nomad has been configured correctly.")
