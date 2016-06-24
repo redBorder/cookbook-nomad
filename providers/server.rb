@@ -11,6 +11,12 @@ action :add do
     bootstrap_expect = new_resource.bootstrap_expect
     servers = new_resource.servers
 
+    service "nomad-server" do
+      supports :status => true, :start => true, :restart => true, :reload => true
+      action :nothing
+    end
+
+
     user user do
       action :create
     end
@@ -38,6 +44,7 @@ action :add do
       retries 2
       variables(:name => name, :data_dir => data_dir, :bind_addr => bind_addr, 
                 :num_schedulers => num_schedulers, :bootstrap_expect => bootstrap_expect, :servers => servers)
+      notifies :restart, 'service[nomad-server]', :delayed
     end
 
     Chef::Log.info("cookbook-nomad has been configured correctly.")
@@ -48,6 +55,11 @@ end
 
 action :remove do
   begin
+    service "nomad-server" do
+      supports :status => true, :start => true, :restart => true, :reload => true
+      action :stop
+    end
+
     dir_list = [
       config_dir,
       data_dir,
