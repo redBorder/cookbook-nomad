@@ -9,7 +9,11 @@
 require 'pry'
 
 ## Configure Client Server
+
+# Compute the total cpu mhz over all CPUs and use the 90%.
 total_cpu_mhz = (node['cpu'].select{|k,v| k =~ /[[:digit:]]/ }.values.map{ |v| v['mhz'].to_f }.compact.inject(0){|total_mhz,cpu_mhz| total_mhz + cpu_mhz } * 0.90).to_i
+
+# Compute the total memory (megabytes) and use the 90%.
 memory_mb = (node['memory']['total'].match(/\A(?<value>\d+)(?<modifier>\w+)\z/)[:value].to_i / 1024 * 0.90).to_i
 
 nomad_client "client" do
