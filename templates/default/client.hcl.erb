@@ -1,0 +1,23 @@
+log_level = "INFO"
+
+region = "global"
+datacenter = "dc1"
+name = "<%= @name %>"
+
+data_dir = "<%= @data_dir %>"
+bind_addr = "<%= @bind_addr %>"
+
+client {
+    enabled = true
+    servers = <%= @servers %> 
+
+    reserved {
+       cpu = <%= @cpu_mhz %>
+       memory = <%= @memory_mb %>
+       disk = <%= @disk_mb %>
+    }
+}
+
+ports {
+   http = 5656
+}
