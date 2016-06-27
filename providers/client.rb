@@ -88,7 +88,7 @@ action :remove do
     ]
 
     template_list.each do |temp|
-       template temp do
+       file temp do
          action :delete
        end
     end
