@@ -55,6 +55,11 @@ action :add do
       notifies :restart, 'service[nomad-client]', :delayed
     end
 
+    service "nomad-client" do
+      supports :status => true, :start => true, :restart => true, :reload => true
+      action :start, :delayed
+    end
+
     Chef::Log.info("nomad client has been configured correctly.")
   rescue => e
     Chef::Log.error(e.message)

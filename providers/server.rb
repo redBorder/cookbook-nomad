@@ -21,7 +21,6 @@ action :add do
       action :nothing
     end
 
-
     user user do
       action :create
     end
@@ -61,6 +60,11 @@ action :add do
       retries 2
       variables(:servers => servers)
       #notifies :restart, 'service[nomad-server]', :delayed
+    end
+
+    service "nomad-server" do
+      supports :status => true, :start => true, :restart => true, :reload => true
+      action :start, :delayed
     end
 
     Chef::Log.info("nomad server has been configured correctly.")
