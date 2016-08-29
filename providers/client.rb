@@ -18,6 +18,11 @@ action :add do
     disk_mb = new_resource.disk_mb
     node_class = new_resource.node_class
 
+    yum_package "redborder-nomad" do
+      action :upgrade
+      flush_cache [ :before ]
+    end
+
     service "nomad-client" do
       supports :status => true, :start => true, :restart => true, :reload => true
       action :nothing

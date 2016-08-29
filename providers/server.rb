@@ -16,6 +16,11 @@ action :add do
     bootstrap_expect = new_resource.bootstrap_expect
     servers = new_resource.servers
 
+    yum_package "redborder-nomad" do
+      action :upgrade
+      flush_cache [ :before ]
+    end 
+
     service "nomad-server" do
       supports :status => true, :start => true, :restart => true, :reload => true
       action :nothing

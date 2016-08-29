@@ -16,11 +16,6 @@ total_cpu_mhz = (node['cpu'].select{|k,v| k =~ /[[:digit:]]/ }.values.map{ |v| v
 # Compute the total memory (megabytes) and use the 90%.
 memory_mb = (node['memory']['total'].match(/\A(?<value>\d+)(?<modifier>\w+)\z/)[:value].to_i / 1024 * 0.90).to_i
 
-yum_package "redborder-nomad" do
-  action :upgrade
-  flush_cache [ :before ]
-end
-
 nomad_client "client" do
   name "nomad-client-1"
   bind_addr node['ipaddress']
