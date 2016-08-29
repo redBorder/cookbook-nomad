@@ -103,6 +103,10 @@ action :remove do
          action :delete
        end
     end
+
+    yum_package "redborder-nomad" do
+      action :remove
+    end
  
     Chef::Log.info("nomad client  has been deleted correctly.")
   rescue => e

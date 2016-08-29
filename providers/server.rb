@@ -106,6 +106,10 @@ action :remove do
          action :delete
        end
     end
+
+    yum_package "redborder-nomad" do
+      action :remove
+    end
  
     Chef::Log.info("nomad server has been deleted correctly.")
   rescue => e
