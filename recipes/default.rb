@@ -6,7 +6,6 @@
 #
 # AFFERO GENERAL PUBLIC LICENSE V3
 #
-require 'pry'
 
 ## Configure Client Server
 
@@ -19,9 +18,9 @@ memory_mb = (node['memory']['total'].match(/\A(?<value>\d+)(?<modifier>\w+)\z/)[
 nomad_client "client" do
   name "nomad-client-1"
   bind_addr node['ipaddress']
-  servers ["#{node['hostname']}"]
-  cpu_mhz total_cpu_mhz
-  memory_mb memory_mb
+  servers ["#{node['ipaddress']}"]
+  cpu_mhz (total_cpu_mhz*0.2).to_i
+  memory_mb (memory_mb*0.2).to_i
   action :add
 end
 
