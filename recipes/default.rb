@@ -37,7 +37,7 @@ nomad_server "server" do
   name "nomad-server-1"
   bind_addr node['ipaddress']
   num_schedulers num_schedulers
-  servers ["#{node['hostname']}"]
+  servers ["#{node['ipaddress']}"]
   action :add
 end
 
