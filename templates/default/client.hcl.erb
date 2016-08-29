@@ -10,7 +10,7 @@ bind_addr = "<%= @bind_addr %>"
 client {
     enabled = true
     servers = <%= @servers %> 
-    node_class = <%= @node_class %>
+    node_class = "<%= @node_class %>"
     reserved {
        cpu = <%= @cpu_mhz %>
        memory = <%= @memory_mb %>
