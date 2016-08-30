@@ -19,8 +19,8 @@ nomad_client "client" do
   name "nomad-client-1"
   bind_addr node['ipaddress']
   servers ["#{node['ipaddress']}"]
-  cpu_mhz (total_cpu_mhz*0.2).to_i
-  memory_mb (memory_mb*0.2).to_i
+  cpu_mhz ((total_cpu_mhz*0.2).to_i)
+  memory_mb ((memory_mb*0.2).to_i)
   action :add
 end
 
