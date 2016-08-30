@@ -1,13 +1,18 @@
-cookbook-example CHANGELOG
+nomad CHANGELOG
 ==========================
 
-This file is used to list changes made in each version of the cookbook-example cookbook.
-
-0.1.0
+0.0.2
 -----
-- [your_name] - Initial release of cookbook-example
+[cjmateos]
+- 505f544 Uninstall package in remove actions
+- 436bd3c Fix string typo.
+- 2dd40e9 Fix recipe to use right ipaddr and resources.
+- f2515b1 Add yum resource to providers
+- 38e787d Change value passed to servers param
+- 1abaaea Fixed typo in client resource
 
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
+0.0.1
+-----
+[agomez] 
+- Initial release of cookbook-nomad
 
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
